@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DexCalc</title>
 </head>
+
 <body>
-    
+<div id="main"></div>
 </body>
 <script>
-    class InputNum{
-        constructor(name){
-            
+    class InputNum {
+        constructor(parent, name, label = name) {
+            this.name = name;
+            this.label = label;
+            this.el = parent.insertAdjacentHTML('beforeend', `<input type="number" id="${name}"></div>`);
         }
     }
+
+    let inp = new InputNum(main, 'test')
 </script>
+
 </html>
