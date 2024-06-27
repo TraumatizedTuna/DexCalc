@@ -8,18 +8,44 @@
 </head>
 
 <body>
-<div id="main"></div>
+    <div id="init_params">
+        <h1>Initial Parameters</h1>
+    </div>
+    <div id="params"></div>
+
 </body>
 <script>
-    class InputNum {
-        constructor(parent, name, label = name) {
+    class InputField {
+        constructor(parent, name, label = name, type = 'number', tooltip = '') {
             this.name = name;
             this.label = label;
-            this.el = parent.insertAdjacentHTML('beforeend', `<input type="number" id="${name}"></div>`);
+            parent.insertAdjacentHTML('beforeend', `${label}<input type="${type}" id="${name}" title="${tooltip}"></input>`);
+            this.el = document.getElementById(name);
+        }
+        get val() {
+            return this.el.value;
+        }
+        set val(v) {
+            this.el.value = v;
         }
     }
+    let initFields = {
+        tol: new InputField(init_params, 'tol', 'Highest number on a fused block: '),
+        err: new InputField(init_params, 'err', 'Current max offset error: ')
+    }
 
-    let inp = new InputNum(main, 'test')
+    let fields = [
+        new InputField(params, 'inc', 'Increment: '),
+        new InputField(params, 'minPosX', 'Lowest number without a tab in positive X: '),
+        new InputField(params, 'minNegX', 'Lowest number without a tab in negative X: '),
+        new InputField(params, 'minPosY', 'Lowest number without a tab in positive Y: '),
+        new InputField(params, 'minNegY', 'Lowest number without a tab in negative Y: ')
+    ]
+
+    function refresh() {
+        let [inc, minPosX, minNegX, minPosY, minNegY] = fields.map(f -> )
+        let deltaX = 
+    }
 </script>
 
 </html>
