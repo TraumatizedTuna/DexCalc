@@ -16,11 +16,12 @@
 </body>
 <script>
     class InputField {
-        constructor(parent, name, label = name, type = 'number', tooltip = '') {
+        constructor(parent, name, label = name, init, type = 'number', tooltip = '') {
             this.name = name;
             this.label = label;
             parent.insertAdjacentHTML('beforeend', `${label}<input type="${type}" id="${name}" title="${tooltip}"></input>`);
             this.el = document.getElementById(name);
+            this.val = init;
         }
         get val() {
             return this.el.value;
@@ -35,17 +36,19 @@
     }
 
     let fields = [
-        new InputField(params, 'inc', 'Increment: '),
+        new InputField(params, 'inc', 'Increment: ', .05),
         new InputField(params, 'minPosX', 'Lowest number without a tab in positive X: '),
         new InputField(params, 'minNegX', 'Lowest number without a tab in negative X: '),
         new InputField(params, 'minPosY', 'Lowest number without a tab in positive Y: '),
         new InputField(params, 'minNegY', 'Lowest number without a tab in negative Y: ')
     ]
 
-    function refresh() {
-        let [inc, minPosX, minNegX, minPosY, minNegY] = fields.map(f -> )
-        let deltaX = 
+    function calc() {
+        let [inc, minPosX, minNegX, minPosY, minNegY] = fields.map(f => f.val)
+        let deltaX = (minPosX - minNegX) * inc / 2
+        let deltaY = (minPosY - minNegY) * inc / 2
     }
+
 </script>
 
 </html>
