@@ -12,6 +12,7 @@
         <h1>Initial Parameters</h1>
     </div>
     <div id="params"></div>
+    <button onclick="nextIt()">Next iteration</button>
 
 </body>
 <script>
@@ -36,17 +37,22 @@
     }
 
     let fields = [
+        new InputField(params, 'offsX', 'X offset: ', 0),
+        new InputField(params, 'offsY', 'Y offset: ', 0),
         new InputField(params, 'inc', 'Increment: ', .05),
+        new InputField(params, 'minOffs', 'Min Offset'),
+        new InputField(params, 'maxOffs', 'Max Offset'),
         new InputField(params, 'minPosX', 'Lowest number without a tab in positive X: '),
         new InputField(params, 'minNegX', 'Lowest number without a tab in negative X: '),
         new InputField(params, 'minPosY', 'Lowest number without a tab in positive Y: '),
         new InputField(params, 'minNegY', 'Lowest number without a tab in negative Y: ')
     ]
 
-    function calc() {
-        let [inc, minPosX, minNegX, minPosY, minNegY] = fields.map(f => f.val)
-        let deltaX = (minPosX - minNegX) * inc / 2
-        let deltaY = (minPosY - minNegY) * inc / 2
+    function nextIt() {
+        let [offsX, offsY, inc, minPosX, minNegX, minPosY, minNegY] = fields
+        offsX.val = (minPosX.val - minNegX.val) * inc.val / 2
+        offsY.val = (minPosY.val - minNegY.val) * inc.val / 2
+        let [a0, a1]=[].sort()
     }
 
 </script>
