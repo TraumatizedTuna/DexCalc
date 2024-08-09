@@ -49,10 +49,16 @@
     ]
 
     function nextIt() {
-        let [offsX, offsY, inc, minPosX, minNegX, minPosY, minNegY] = fields
+        let [offsX, offsY, inc, minOffs, maxOffs, minPosX, minNegX, minPosY, minNegY] = fields
         offsX.val = (minPosX.val - minNegX.val) * inc.val / 2
         offsY.val = (minPosY.val - minNegY.val) * inc.val / 2
-        let [a0, a1]=[].sort()
+        let [a0, a1] = [
+            (minPosX.val + minNegX.val) / 2,
+            (minPosY.val + minNegY.val) / 2
+        ].sort()
+        a0--, a1++
+        minOffs.val += a0 * inc.val
+        maxOffs.val = minOffs.val * inc.val
     }
 
 </script>
